@@ -26,11 +26,17 @@ class Penneo_Plugin {
 		ob_start();
         wp_enqueue_style( 'penneo_styles' );
 		$values = explode( ',', $atts['data-values'] );
-		echo "<input type='range' min='0' max='" . ( count( $values ) - 1 ) . "' step='1' value='0' ";
-		array_walk( $atts, function( $value, $key ) {
-			echo " " . $key . '="' . $value . '"';
-		});
-		echo "/>";
+?>
+			<div class="slider_container">
+			<input type='range' class='slider' min='0' max='100' step='0.1' value='0'
+				<?php
+					array_walk( $atts, function( $value, $key ) {
+						echo " " . $key . '="' . $value . '"';
+					});
+				?>
+			/>	
+		</div>
+<?php
 		return ob_get_clean();
 	}
 

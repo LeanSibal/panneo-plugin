@@ -89,8 +89,8 @@ var custom_range_sum = {
         var index = jQuery( element ).data( 'index' );
         var slider = jQuery( '#' + id );
         var snap = slider.data( 'snap' ).split(',');
-        console.log( slider, index, snap );
         this.moveSlider( slider, index, snap );
+        this.compute();
     }
 
 };

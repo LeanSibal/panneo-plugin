@@ -83,6 +83,14 @@ var custom_range_sum = {
             }
         }
         return size;
+    },
+    setIndex: function( element ) {
+        var id = jQuery( element ).data( 'id' );
+        var index = jQuery( element ).data( 'index' );
+        var slider = jQuery( '#' + id );
+        var snap = slider.data( 'snap' ).split(',');
+        console.log( slider, index, snap );
+        this.moveSlider( slider, index, snap );
     }
 
 };
@@ -90,4 +98,7 @@ jQuery( document ).ready( function() {
     if( jQuery( '#custom_range_sum' ).length > 0 ) {
         custom_range_sum.init();
     }
+    jQuery( '.range_selector' ).on('click', function( event ) {
+        custom_range_sum.setIndex( event.currentTarget );
+    });
 });

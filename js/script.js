@@ -32,8 +32,12 @@ var custom_range_sum = {
         this.moveSlider( this.right, rightIndex, this.rightSnap );
 
         if( typeof this.leftValues[ leftIndex ] === 'undefined' || typeof this.rightValues[ rightIndex ] == 'undefined' ) return false;
-        var _sum = parseInt( this.leftValues[ leftIndex ] ) + parseInt( this.rightValues[ rightIndex ] );
+        var leftValue = parseInt( this.leftValues[ leftIndex ] );
+        var rightValue = parseInt( this.rightValues[ rightIndex] );
+        var _sum = leftValue + rightValue;
         jQuery( '#custom_range_sum' ).text( new Intl.NumberFormat('de-DE').format( _sum ) );
+        jQuery('.custom_range_value[data-from="range_left"]').text( new Intl.NumberFormat('de-DE').format( leftValue ) );
+        jQuery('.custom_range_value[data-from="range_right"]').text( new Intl.NumberFormat('de-DE').format( rightValue ) );
     },
     moveSlider: function( slider, index, snap ) {
         var step = slider.data( 'values' ).split(',').length - 1;
@@ -90,7 +94,7 @@ var custom_range_sum = {
         var slider = jQuery( '#' + id );
         var snap = slider.data( 'snap' ).split(',');
         this.moveSlider( slider, index, snap );
-        this.compute();
+        setTimeout( this.compute.bind( this ), 120 );
     }
 
 };

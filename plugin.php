@@ -15,6 +15,7 @@ class Penneo_Plugin {
         add_shortcode( 'custom_range_input', [ $this, 'custom_range_input' ] );
         add_shortcode( 'custom_range_sum', [ $this, 'custom_range_sum' ] );
         add_shortcode( 'range_selector', [ $this, 'range_selector' ] );
+        add_shortcode( 'custom_range_value', [ $this, 'custom_range_value' ] );
 	}
 
     public function wp_enqueue_scripts() {
@@ -62,6 +63,15 @@ class Penneo_Plugin {
             ?>
         /><?php echo $content; ?>
         </div>
+<?php
+        return ob_get_clean();
+    }
+
+    public function custom_range_value( $atts ) {
+        if( empty( $atts['from'] ) ) return false;
+        ob_start();
+?>
+        <span class="custom_range_value" data-from="<?php echo $atts['from']; ?>"></span>
 <?php
         return ob_get_clean();
     }

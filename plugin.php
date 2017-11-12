@@ -16,7 +16,30 @@ class Penneo_Plugin {
         add_shortcode( 'custom_range_sum', [ $this, 'custom_range_sum' ] );
         add_shortcode( 'range_selector', [ $this, 'range_selector' ] );
         add_shortcode( 'custom_range_value', [ $this, 'custom_range_value' ] );
+        add_shortcode( 'kunde_categories_tab', [ $this, 'kunde_categories_tab' ] );
 	}
+
+    public function kunde_categories_tab() {
+        $categories = get_categories([
+            'type' => 'kunde',
+        ]);
+        wp_enqueue_style( 'penneo_styles' );
+        $i = 0;
+        ob_start();
+        ?>
+        <div class="penneo-customers-page">
+            <div class="penneo-tab-container">
+                <?php foreach( $categories as $category ): ?>
+                    <div class="penneo-tab-item-container">
+                        <span class="penneo-tab-item"><?php echo $category->name; ?></span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <div class="
+        </div>
+        <?php
+        return ob_get_clean();
+    }
 
     public function wp_enqueue_scripts() {
         wp_register_style( 'penneo_styles', plugins_url( '/penneo-plugin/css/styles.css' ) );
@@ -28,8 +51,8 @@ class Penneo_Plugin {
 		ob_start();
         wp_enqueue_style( 'penneo_styles' );
 		$values = explode( ',', $atts['data-values'] );
-?>
-			<div class="slider_container">
+            ?>
+            <div class="slider_container">
 			<input type='range' class='slider' min='0' max='100' step='0.1' value='0'
 				<?php
 					array_walk( $atts, function( $value, $key ) {
@@ -38,7 +61,7 @@ class Penneo_Plugin {
 				?>
 			/>	
 		</div>
-<?php
+        <?php
 		return ob_get_clean();
 	}
 
@@ -46,15 +69,15 @@ class Penneo_Plugin {
         if( empty( $atts['left'] ) || empty( $atts['right'] ) ) return false;
         ob_start();
         wp_enqueue_script( 'penneo_script' );
-?>
-    <span id="custom_range_sum" data-left="<?php echo $atts['left']; ?>" data-right="<?php echo $atts['right']; ?>" />
-<?php
+        ?>
+            <span id="custom_range_sum" data-left="<?php echo $atts['left']; ?>" data-right="<?php echo $atts['right']; ?>" />
+        <?php
         return ob_get_clean();
     }
 
     public function range_selector( $atts, $content ) {
         ob_start();
-?>
+        ?>
         <div class="range_selector"
             <?php
                 array_walk( $atts, function( $value, $key ) {
@@ -63,16 +86,16 @@ class Penneo_Plugin {
             ?>
         /><?php echo $content; ?>
         </div>
-<?php
+        <?php
         return ob_get_clean();
     }
 
     public function custom_range_value( $atts ) {
         if( empty( $atts['from'] ) ) return false;
         ob_start();
-?>
-        <span class="custom_range_value" data-from="<?php echo $atts['from']; ?>"></span>
-<?php
+        ?>
+            <span class="custom_range_value" data-from="<?php echo $atts['from']; ?>"></span>
+        <?php
         return ob_get_clean();
     }
 

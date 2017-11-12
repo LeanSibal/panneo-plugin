@@ -71,3 +71,26 @@
     background: #c5009f; /* Green background */
     cursor: pointer; /* Cursor on hover */
 }
+
+
+.penneo-tab-container {
+    border-radius:100px;
+    background:#fff;
+    box-shadow:3px 3px 15px 0 rgba(0,0,0,0.1);
+    max-width:1190px;
+    display:flex;
+    flex-direction:row;
+    justify-content: space-around;
+}
+.penneo-tab-container .penneo-tab-item-container {
+    margin:20px 0;
+    padding:15px;
+}
+.penneo-tab-container .penneo-tab-item {
+    padding:5px 0;
+    color:#00025F !important;
+    text-transform: uppercase;
+    font-family:"Open Sans", sans-serif;
+    font-weight:bold;
+
+}

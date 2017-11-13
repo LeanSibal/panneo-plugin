@@ -130,7 +130,7 @@ jQuery( document ).ready( function() {
             success:function( data ) {
                 jQuery('#modal-featured_image').attr('src', data.featured_image );
                 jQuery('#modal-post_title').text( data.post_title );
-                jQuery('#modal-post_content').text( data.post_content );
+                jQuery('#modal-post_content').html( data.post_content );
                 jQuery('#modal-permalink').attr( 'href', data.permalink );
                 jQuery('#penneo-modal').modal('show');
                 console.log( data );

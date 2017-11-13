@@ -105,4 +105,37 @@ jQuery( document ).ready( function() {
     jQuery( '.range_selector' ).on('click', function( event ) {
         custom_range_sum.setIndex( event.currentTarget );
     });
+	jQuery('.penneo-slider').bxSlider({
+		pager: false
+	});
+	setTimeout(function(){
+		jQuery('.penneo-tab-content').hide();
+		jQuery('.penneo-tab-content:first').show();
+	},500);
+	jQuery('.penneo-tab-item').on('click',function(){
+		jQuery('.penneo-tab-item').removeClass('penneo-tab-active');
+		jQuery( this ).addClass('penneo-tab-active');
+		var cat_id = jQuery( this ).data('category_id');
+		jQuery('.penneo-tab-content').hide();
+		jQuery('.penneo-tab-content[data-category_id="' + cat_id + '"]').show();
+	
+	});
+	jQuery('.penneo-slider-container').on('click', function() {
+        jQuery.post({
+            url: penneo.ajax_url,
+            data: {
+                post_id: jQuery( this ).data('post_id')
+            },
+            dataType: 'json',
+            success:function( data ) {
+                jQuery('#modal-featured_image').attr('src', data.featured_image );
+                jQuery('#modal-post_title').text( data.post_title );
+                jQuery('#modal-post_content').text( data.post_content );
+                jQuery('#modal-permalink').attr( 'href', data.permalink );
+                jQuery('#penneo-modal').modal('show');
+                console.log( data );
+            }
+        });
+	});
+
 });

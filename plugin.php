@@ -117,8 +117,7 @@ class Penneo_Plugin {
         wp_register_style( 'bootstrap-theme.modal', plugins_url( '/penneo-plugin/css/bootstrap-theme.min.css' ) );
         wp_register_script( 'penneo_script', plugins_url( '/penneo-plugin/js/script.js' ), [ 'jquery.bxslider', 'bootstrap.modal' ] );
         wp_register_script( 'bootstrap.modal', plugins_url( '/penneo-plugin/js/bootstrap.min.js' ), [], '3.3.7' );
-        wp_register_script( 'jquery.bxslider', plugins_url( '/penneo-plugin/js/jquery.bxslider.min.js' ), [ 'jquery-3.1.1' ], '4.2.12' );
-		wp_register_script( 'jquery-3.1.1', plugins_url( '/penneo-plugin/js/jquery.min.js' ), [], '3.1.1' );
+        wp_register_script( 'jquery.bxslider', plugins_url( '/penneo-plugin/js/jquery.bxslider.min.js' ), [ 'jquery' ], '4.2.12' );
     }
 
 	public function custom_range_input( $atts ) {

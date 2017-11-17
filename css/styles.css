@@ -132,10 +132,13 @@
 	display:none;
 }
 .modal-dialog {
-    max-width: 960px !important;
-    width: 90% !important;
+    width: 100% !important;
+    height:100% !important;
     top: 100px !important;
     z-index: 99999 !important;
+}
+.bx-wrapper .bx-controls-direction a {
+    z-index:999 !important;
 }
 button.close {
     color: #C5009F !important;
@@ -181,3 +184,36 @@ button.close span {
     border-radius: 100px !important;
 }
 
+.col-xs-5ths,
+.col-sm-5ths,
+.col-md-5ths,
+.col-lg-5ths {
+    position: relative;
+    min-height: 1px;
+}
+
+.col-xs-5ths {
+    width: 20%;
+    float: left;
+}
+
+@media (min-width: 768px) {
+    .col-sm-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-lg-5ths {
+        width: 20%;
+        float: left;
+    }
+}

@@ -34,12 +34,49 @@ class Penneo_Plugin {
         wp_die();
     }
 
+    public function popup(){
+        ob_start();
+        ?>
+        <div class="modal fade" id="penneo-modal" role="dialog" aria-labelledby="important-msg-label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img id="modal-featured_image"/>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-content">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        LUK CASEN
+                                        <span aria-hidden="true">&times;</span>
+                                        <span class="sr-only">Close</span>
+                                    </button>
+                                    <div class="text-group-content">
+                                        <h2 id="modal-post_title"></h2>
+                                        <p id="modal-post_content"></p>
+                                        <a id="modal-permalink" href="#">BOOK EN DEMO</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+        echo ob_get_clean();
+    }
     public function kunde_categories_tab() {
         $categories = get_categories([
             'type' => 'kunde',
         ]);
+        add_action('wp_footer', [ $this, 'popup' ] );
         wp_localize_script('penneo_script', 'penneo', [
             'ajax_url' => admin_url( 'admin-ajax.php' ) . "?action=get_post_modal"
+        ]);
+        $customers = get_posts([
+            'post_type' => 'kunde'
         ]);
         wp_enqueue_script( 'penneo_script' );
         wp_enqueue_style( 'jquery.bxslider' );
@@ -75,36 +112,19 @@ class Penneo_Plugin {
 						</div>
 						<?php endforeach; ?>
 					</div>
+                    <div>
+                        <div class="row">
+                        <?php foreach( get_posts(['category' => $category->cat_ID, 'post_type' => 'kunde' ]) as $client  ): ?>
+                        <?php $image = get_field( 'client_logo', $client->ID ); ?>
+                            <div class="col-md-5ths">
+                                <img src="<?php echo $image['sizes']['medium']; ?>" />
+                            </div>
+                        <?php endforeach; ?>
+                        </div>
+                    </div>
 				</div>
 				<?php endforeach; ?>
 			</div>
-        </div>
-        <div class="modal fade" id="penneo-modal" role="dialog" aria-labelledby="important-msg-label" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <img id="modal-featured_image"/>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="text-content">
-                                    <button type="button" class="close" data-dismiss="modal">
-                                        LUK CASEN
-                                        <span aria-hidden="true">&times;</span>
-                                        <span class="sr-only">Close</span>
-                                    </button>
-                                    <div class="text-group-content">
-                                        <h2 id="modal-post_title"></h2>
-                                        <p id="modal-post_content"></p>
-                                        <a id="modal-permalink" href="#">BOOK EN DEMO</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <?php
         return ob_get_clean();

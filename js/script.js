@@ -111,7 +111,7 @@ jQuery( document ).ready( function() {
 	setTimeout(function(){
 		jQuery('.penneo-tab-content').hide();
 		jQuery('.penneo-tab-content:first').show();
-	},500);
+	},1000);
 	jQuery('.penneo-tab-item').on('click',function(){
 		jQuery('.penneo-tab-item').removeClass('penneo-tab-active');
 		jQuery( this ).addClass('penneo-tab-active');

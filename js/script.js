@@ -105,12 +105,15 @@ jQuery( document ).ready( function() {
     jQuery( '.range_selector' ).on('click', function( event ) {
         custom_range_sum.setIndex( event.currentTarget );
     });
-	jQuery('.penneo-slider').bxSlider({
-		pager: false
-	});
+	jQuery('.penneo-slider').each(function(){
+        jQuery(this).bxSlider({
+            pager: false,
+            preloadImages: 'all'
+        });
+    });
 	setTimeout(function(){
-		jQuery('.penneo-tab-content').hide();
-		jQuery('.penneo-tab-content:first').show();
+		//jQuery('.penneo-tab-content').hide();
+		//jQuery('.penneo-tab-content:first').show();
 	},1000);
 	jQuery('.penneo-tab-item').on('click',function(){
 		jQuery('.penneo-tab-item').removeClass('penneo-tab-active');

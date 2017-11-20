@@ -99,7 +99,7 @@ class Penneo_Plugin {
 				<div class="penneo-tab-content <?php echo ( $i++ == 0 ) ? "penneo-tab-current" : ""; ?>" data-category_id="<?php echo $category->cat_ID; ?>">
 					<div class="penneo-slider">
 						<?php foreach( get_posts([ 'category' => $category->cat_ID ] ) as $__post ): ?>
-						<div class="penneo-slider-container" data-post_id="<?php echo $__post->ID; ?>">
+						<div class="penneo-slider-container container" data-post_id="<?php echo $__post->ID; ?>">
 							<div class="row">
 								<div class="col-sm-6 post-slider-text">
 									<div class="penneo-white-line"></div>
@@ -112,7 +112,7 @@ class Penneo_Plugin {
 						</div>
 						<?php endforeach; ?>
 					</div>
-                    <div>
+                    <div class="container">
                         <div class="row">
                         <?php foreach( get_posts(['category' => $category->cat_ID, 'post_type' => 'kunde' ]) as $client  ): ?>
                         <?php $image = get_field( 'client_logo', $client->ID ); ?>

@@ -17,9 +17,27 @@ class Penneo_Plugin {
         add_shortcode( 'range_selector', [ $this, 'range_selector' ] );
         add_shortcode( 'custom_range_value', [ $this, 'custom_range_value' ] );
         add_shortcode( 'kunde_categories_tab', [ $this, 'kunde_categories_tab' ] );
+        add_shortcode( 'range_left_text', [ $this, 'range_left_text' ] );
+        add_shortcode( 'range_right_text', [ $this, 'range_right_text' ] );
 		add_action('wp_ajax_get_post_modal', [ $this, 'get_post_modal' ] );
 		add_action('wp_ajax_nopriv_get_post_modal', [ $this, 'get_post_modal' ] );
 	}
+
+    public function range_left_text() {
+        ob_start();
+        ?>
+        <span id="range_left_text"></span>
+        <?php
+        return ob_get_clean();
+    }
+
+    public function range_right_text() {
+        ob_start();
+        ?>
+        <span id="range_right_text"></span>
+        <?php
+        return ob_get_clean();
+    }
 
     public  function get_post_modal(){
         if( empty( $_POST['post_id'] ) ) wp_die();

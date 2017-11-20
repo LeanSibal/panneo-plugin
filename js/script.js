@@ -3,6 +3,8 @@ var custom_range_sum = {
     right: null,
     leftValues: [],
     rightValues: [],
+    leftText: "",
+    rightText: "",
     leftSnap: null,
     rightSnap: null,
     init: function(){
@@ -45,6 +47,12 @@ var custom_range_sum = {
         var to = index * ( 100 / step );
         if( snap != null && typeof snap[ index ] !== 'undefined' ) {
             var to = snap[ index ];
+        }
+        var text = jQuery( slider ).data( 'text' );
+        var text_target = jQuery( slider ).data( 'text_target' );
+        if( text && text_target ) {
+            text = text.split(',');
+            jQuery( text_target ).text( text[index] );
         }
         var difference = 0;
         if( from > to ) {
@@ -136,7 +144,6 @@ jQuery( document ).ready( function() {
                 jQuery('#modal-post_content').html( data.post_content );
                 jQuery('#modal-permalink').attr( 'href', data.permalink );
                 jQuery('#penneo-modal').modal('show');
-                console.log( data );
             }
         });
 	});

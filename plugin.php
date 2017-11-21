@@ -115,7 +115,7 @@ class Penneo_Plugin {
 			<div class="penneo-tab-content-container">
 				<?php foreach( $categories as $category ): ?>
 				<div class="penneo-tab-content <?php echo ( $i++ == 0 ) ? "penneo-tab-current" : ""; ?>" data-category_id="<?php echo $category->cat_ID; ?>">
-					<div class="penneo-slider">
+                    <div class="penneo-slider" data-category_id="<?php echo $category->cat_ID; ?>">
 						<?php foreach( get_posts([ 'category' => $category->cat_ID ] ) as $__post ): ?>
 						<div class="penneo-slider-container container" data-post_id="<?php echo $__post->ID; ?>">
 							<div class="row">

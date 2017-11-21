@@ -113,8 +113,10 @@ jQuery( document ).ready( function() {
     jQuery( '.range_selector' ).on('click', function( event ) {
         custom_range_sum.setIndex( event.currentTarget );
     });
+    var sliders = [];
 	jQuery('.penneo-slider').each(function(){
-        jQuery(this).bxSlider({
+        var cat_id = jQuery( this ).data( 'category_id' );
+        sliders[cat_id] = jQuery(this).bxSlider({
             pager: false,
             preloadImages: 'all'
         });
@@ -128,10 +130,8 @@ jQuery( document ).ready( function() {
 		jQuery( this ).addClass('penneo-tab-active');
 		var cat_id = jQuery( this ).data('category_id');
 		jQuery('.penneo-tab-content').hide();
-		jQuery('.penneo-tab-content[data-category_id="' + cat_id + '"] .penneo-slider').bxSlider({
-            redrawSlider: true
-        });
 		jQuery('.penneo-tab-content[data-category_id="' + cat_id + '"]').show();
+        sliders[ cat_id ].redrawSlider();
 	
 	});
 	jQuery('.penneo-slider-container').on('click', function() {

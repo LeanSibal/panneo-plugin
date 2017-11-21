@@ -121,10 +121,13 @@ jQuery( document ).ready( function() {
             preloadImages: 'all'
         });
     });
-	setTimeout(function(){
-		jQuery('.penneo-tab-content').hide();
-		jQuery('.penneo-tab-content:first').show();
-	},1000);
+    setTimeout(function(){
+        jQuery('.penneo-tab-content').hide();
+        jQuery('.penneo-tab-content:first').show();
+        var first_cat_id = jQuery('.penneo-tab-content:first').data('category_id');
+        sliders[ first_cat_id ].redrawSlider();
+    },50);
+
 	jQuery('.penneo-tab-item').on('click',function(){
 		jQuery('.penneo-tab-item').removeClass('penneo-tab-active');
 		jQuery( this ).addClass('penneo-tab-active');

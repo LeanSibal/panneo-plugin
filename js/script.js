@@ -120,14 +120,17 @@ jQuery( document ).ready( function() {
         });
     });
 	setTimeout(function(){
-		//jQuery('.penneo-tab-content').hide();
-		//jQuery('.penneo-tab-content:first').show();
+		jQuery('.penneo-tab-content').hide();
+		jQuery('.penneo-tab-content:first').show();
 	},1000);
 	jQuery('.penneo-tab-item').on('click',function(){
 		jQuery('.penneo-tab-item').removeClass('penneo-tab-active');
 		jQuery( this ).addClass('penneo-tab-active');
 		var cat_id = jQuery( this ).data('category_id');
 		jQuery('.penneo-tab-content').hide();
+		jQuery('.penneo-tab-content[data-category_id="' + cat_id + '"] .penneo-slider').bxSlider({
+            redrawSlider: true
+        });
 		jQuery('.penneo-tab-content[data-category_id="' + cat_id + '"]').show();
 	
 	});

@@ -146,19 +146,21 @@
 .bx-wrapper .bx-controls-direction a {
     z-index:999 !important;
 }
-button.close {
+.modal-content {
+    height: 100% !important;
+    border-radius:0;
+    overflow-x:scroll;
+}
+.modal-content button.close {
+    margin-top:20px;
     color: #C5009F !important;
     font-size:12px;
 }
-button.close span {
+.modal-content button.close span {
     font-size:20px;
     color: #C5009F !important;
     opacity: 1 !important;
     font-weight:normal;
-}
-.modal-content {
-    height: 100% !important;
-    border-radius:0;
 }
 .modal-body {
     padding:0;
